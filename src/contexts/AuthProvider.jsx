@@ -6,6 +6,7 @@ const AuthContext = createContext();
 function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
         const getSession = async () => {
@@ -30,8 +31,31 @@ function AuthProvider({ children }) {
         };
     }, []);
 
+    useEffect(() => {
+        if (!user?.id) return;
+
+        const fetchUserData = async () => {
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('id', user?.id)
+                .single();
+
+            if (error) {
+                console.error(
+                    'Błąd przy pobieraniu danych użytkownika:',
+                    error
+                );
+            } else {
+                setUserData(data);
+            }
+        };
+
+        fetchUserData();
+    }, [user]);
+
     return (
-        <AuthContext.Provider value={{ user, loading }}>
+        <AuthContext.Provider value={{ user, loading, userData, setUserData }}>
             {children}
         </AuthContext.Provider>
     );
