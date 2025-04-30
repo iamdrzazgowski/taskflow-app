@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
-import LoginPage from './pages/LoginPage/LoginPage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
-
 import { AuthProvider } from './contexts/AuthProvider';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import LoginPage from './pages/LoginPage/LoginPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 import AppLayout from './pages/AppLayout/AppLayout';
+import HomePage from './pages/HomePage/HomePage';
 
 function App() {
     return (
@@ -20,6 +20,7 @@ function App() {
                                 <AppLayout />
                             </ProtectedRoute>
                         }>
+                        <Route index element={<HomePage />} />
                         <Route path='teams' element={<div>Teams</div>} />
                         <Route
                             path='teams/:teamId'
@@ -30,7 +31,11 @@ function App() {
                             element={<div>Tasks</div>}
                         />
                         <Route
-                            path='user-tasks'
+                            path='teams/:teamId/members'
+                            element={<div>Members</div>}
+                        />
+                        <Route
+                            path='userTasks'
                             element={<div>User Tasks</div>}
                         />
                     </Route>
