@@ -10,11 +10,36 @@ function AuthProvider({ children }) {
 
     useEffect(() => {
         const getSession = async () => {
+            setLoading(true);
             const {
                 data: { session },
             } = await supabase.auth.getSession();
 
             setUser(session?.user || null);
+
+            if (session?.user) {
+                try {
+                    const { data, error } = await supabase
+                        .from('users')
+                        .select('*')
+                        .eq('id', session.user.id)
+                        .single();
+
+                    if (error) {
+                        console.error(
+                            'Błąd przy pobieraniu danych użytkownika:',
+                            error
+                        );
+                    } else {
+                        setUserData(data);
+                    }
+                } catch (error) {
+                    console.error(
+                        'Błąd przy pobieraniu danych użytkownika:',
+                        error
+                    );
+                }
+            }
             setLoading(false);
         };
 
@@ -30,36 +55,6 @@ function AuthProvider({ children }) {
             listener.subscription.unsubscribe();
         };
     }, []);
-
-    useEffect(() => {
-        if (!user?.id || userData?.id === user.id) return;
-
-        const fetchUserData = async () => {
-            try {
-                const { data, error } = await supabase
-                    .from('users')
-                    .select('*')
-                    .eq('id', user?.id)
-                    .single();
-
-                if (error) {
-                    console.error(
-                        'Błąd przy pobieraniu danych użytkownika:',
-                        error
-                    );
-                } else {
-                    setUserData(data);
-                }
-            } catch (error) {
-                console.error(
-                    'Błąd przy pobieraniu danych użytkownika:',
-                    error
-                );
-            }
-        };
-
-        fetchUserData();
-    }, [user, userData]);
 
     return (
         <AuthContext.Provider value={{ user, loading, userData, setUserData }}>
