@@ -32,27 +32,34 @@ function AuthProvider({ children }) {
     }, []);
 
     useEffect(() => {
-        if (!user?.id) return;
+        if (!user?.id || userData?.id === user.id) return;
 
         const fetchUserData = async () => {
-            const { data, error } = await supabase
-                .from('users')
-                .select('*')
-                .eq('id', user?.id)
-                .single();
+            try {
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('*')
+                    .eq('id', user?.id)
+                    .single();
 
-            if (error) {
+                if (error) {
+                    console.error(
+                        'Błąd przy pobieraniu danych użytkownika:',
+                        error
+                    );
+                } else {
+                    setUserData(data);
+                }
+            } catch (error) {
                 console.error(
                     'Błąd przy pobieraniu danych użytkownika:',
                     error
                 );
-            } else {
-                setUserData(data);
             }
         };
 
         fetchUserData();
-    }, [user]);
+    }, [user?.id, userData?.id]);
 
     return (
         <AuthContext.Provider value={{ user, loading, userData, setUserData }}>
