@@ -14,7 +14,13 @@ function AuthProvider({ children }) {
                 data: { session },
             } = await supabase.auth.getSession();
 
-            setUser(session?.user || null);
+            if (session?.user) {
+                setUser(session.user);
+                fetchUserData(session.user.id);
+            } else {
+                setUser(null);
+            }
+
             setLoading(false);
         };
 
@@ -23,6 +29,12 @@ function AuthProvider({ children }) {
         const { data: listener } = supabase.auth.onAuthStateChange(
             (_event, session) => {
                 setUser(session?.user || null);
+
+                if (session?.user) {
+                    fetchUserData(session.user.id);
+                } else {
+                    setUserData(null);
+                }
             }
         );
 
@@ -31,35 +43,26 @@ function AuthProvider({ children }) {
         };
     }, []);
 
-    useEffect(() => {
-        if (!user?.id || userData?.id === user.id) return;
+    const fetchUserData = async (userId) => {
+        try {
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('id', userId)
+                .single();
 
-        const fetchUserData = async () => {
-            try {
-                const { data, error } = await supabase
-                    .from('users')
-                    .select('*')
-                    .eq('id', user?.id)
-                    .single();
-
-                if (error) {
-                    console.error(
-                        'Błąd przy pobieraniu danych użytkownika:',
-                        error
-                    );
-                } else {
-                    setUserData(data);
-                }
-            } catch (error) {
+            if (error) {
                 console.error(
                     'Błąd przy pobieraniu danych użytkownika:',
                     error
                 );
+            } else {
+                setUserData(data);
             }
-        };
-
-        fetchUserData();
-    }, [user, userData]);
+        } catch (error) {
+            console.error('Błąd przy pobieraniu danych użytkownika:', error);
+        }
+    };
 
     return (
         <AuthContext.Provider value={{ user, loading, userData, setUserData }}>
