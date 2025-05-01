@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import supabase from '../utils/supabaseClient';
 
 const AuthContext = createContext();
@@ -8,6 +14,8 @@ function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState(null);
 
+    const lastUserIdRef = useRef(null);
+
     useEffect(() => {
         const getSession = async () => {
             const {
@@ -16,9 +24,13 @@ function AuthProvider({ children }) {
 
             if (session?.user) {
                 setUser(session.user);
-                fetchUserData(session.user.id);
+                if (lastUserIdRef.current !== session.user.id) {
+                    lastUserIdRef.current = session.user.id;
+                    fetchUserData(session.user.id);
+                }
             } else {
                 setUser(null);
+                lastUserIdRef.current = null;
             }
 
             setLoading(false);
@@ -27,13 +39,19 @@ function AuthProvider({ children }) {
         getSession();
 
         const { data: listener } = supabase.auth.onAuthStateChange(
-            (_event, session) => {
-                setUser(session?.user || null);
+            (event, session) => {
+                const newUserId = session?.user?.id;
 
-                if (session?.user) {
-                    fetchUserData(session.user.id);
-                } else {
-                    setUserData(null);
+                if (newUserId !== lastUserIdRef.current) {
+                    setUser(session?.user || null);
+
+                    if (newUserId) {
+                        lastUserIdRef.current = newUserId;
+                        fetchUserData(newUserId);
+                    } else {
+                        setUserData(null);
+                        lastUserIdRef.current = null;
+                    }
                 }
             }
         );
