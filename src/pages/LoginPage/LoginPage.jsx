@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import { useAuth } from '../../contexts/AuthProvider';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import { useEffect } from 'react';
@@ -19,6 +19,9 @@ export default function LoginPage() {
         <div>
             <h2>Logowanie</h2>
             <LoginForm />
+            <p>
+                Don't have an account? <Link to='/register'>Sign up</Link>
+            </p>
         </div>
     );
 }

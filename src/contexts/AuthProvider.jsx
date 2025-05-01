@@ -12,12 +12,13 @@ const AuthContext = createContext();
 function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState(null);
+    const [profile, setProfile] = useState(null);
 
     const lastUserIdRef = useRef(null);
 
     useEffect(() => {
         const getSession = async () => {
+            setLoading(true);
             const {
                 data: { session },
             } = await supabase.auth.getSession();
@@ -26,10 +27,11 @@ function AuthProvider({ children }) {
                 setUser(session.user);
                 if (lastUserIdRef.current !== session.user.id) {
                     lastUserIdRef.current = session.user.id;
-                    fetchUserData(session.user.id);
+                    await fetchUserData(session.user.id);
                 }
             } else {
                 setUser(null);
+                setProfile(null);
                 lastUserIdRef.current = null;
             }
 
@@ -49,7 +51,7 @@ function AuthProvider({ children }) {
                         lastUserIdRef.current = newUserId;
                         fetchUserData(newUserId);
                     } else {
-                        setUserData(null);
+                        setProfile(null);
                         lastUserIdRef.current = null;
                     }
                 }
@@ -75,7 +77,7 @@ function AuthProvider({ children }) {
                     error
                 );
             } else {
-                setUserData(data);
+                setProfile(data);
             }
         } catch (error) {
             console.error('Błąd przy pobieraniu danych użytkownika:', error);
@@ -83,7 +85,7 @@ function AuthProvider({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, userData, setUserData }}>
+        <AuthContext.Provider value={{ user, loading, profile, setProfile }}>
             {children}
         </AuthContext.Provider>
     );
