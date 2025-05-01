@@ -59,7 +59,7 @@ function AuthProvider({ children }) {
         };
 
         fetchUserData();
-    }, [user?.id, userData?.id]);
+    }, [user, userData]);
 
     return (
         <AuthContext.Provider value={{ user, loading, userData, setUserData }}>
