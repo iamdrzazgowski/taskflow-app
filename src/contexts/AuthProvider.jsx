@@ -37,6 +37,7 @@ function AuthProvider({ children }) {
         const { data: listener } = supabase.auth.onAuthStateChange(
             (event, session) => {
                 const newUserId = session?.user?.id;
+
                 setUser(session?.user || null);
 
                 if (newUserId) {
