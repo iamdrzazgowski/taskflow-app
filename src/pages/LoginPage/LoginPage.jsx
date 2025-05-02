@@ -3,6 +3,8 @@ import { useAuth } from '../../contexts/AuthProvider';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import { useEffect } from 'react';
 
+import style from './LoginPage.module.css';
+
 export default function LoginPage() {
     const { user, isLoading } = useAuth();
     const navigate = useNavigate();
@@ -14,12 +16,14 @@ export default function LoginPage() {
     if (user) return null;
 
     return (
-        <div>
-            <h2>Logowanie</h2>
-            <LoginForm />
-            <p>
-                Don't have an account? <Link to='/register'>Sign up</Link>
-            </p>
+        <div className={style.container}>
+            <section className={style.formContainer}>
+                <h1 className={style.headerText}>Sign in</h1>
+                <LoginForm />
+                <p className={style.accountCreateText}>
+                    Don't have an account? <Link to='/register'>Sign up</Link>
+                </p>
+            </section>
         </div>
     );
 }

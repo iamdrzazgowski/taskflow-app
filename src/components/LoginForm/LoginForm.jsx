@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import supabase from '../../utils/supabaseClient';
 import { useNavigate } from 'react-router';
+import style from './LoginForm.module.css';
 
 export default function LoginForm() {
     const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ export default function LoginForm() {
     };
     return (
         <form onSubmit={handleLogin}>
-            <div>
+            <div className={style.formGroup}>
                 <label>Email:</label>
                 <input
                     type='email'
@@ -28,8 +29,8 @@ export default function LoginForm() {
                     required
                 />
             </div>
-            <div>
-                <label>Hasło:</label>
+            <div className={style.formGroup}>
+                <label>Password:</label>
                 <input
                     type='password'
                     value={password}
@@ -37,7 +38,9 @@ export default function LoginForm() {
                     required
                 />
             </div>
-            <button type='submit'>Logowanie...</button>
+            <button type='submit' className={style.btn}>
+                Login
+            </button>
         </form>
     );
 }

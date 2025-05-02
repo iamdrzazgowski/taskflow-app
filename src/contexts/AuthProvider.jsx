@@ -11,7 +11,6 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
-    // const [loading, setLoading] = useState(true);
     const [profile, setProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
