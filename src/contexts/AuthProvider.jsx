@@ -11,15 +11,16 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [profile, setProfile] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const lastUserIdRef = useRef(null);
 
     useEffect(() => {
         const getSession = async () => {
             try {
-                setLoading(true);
+                setIsLoading(true);
                 const {
                     data: { session },
                 } = await supabase.auth.getSession();
@@ -41,7 +42,7 @@ function AuthProvider({ children }) {
                 setProfile(null);
                 lastUserIdRef.current = null;
             } finally {
-                setLoading(false);
+                setIsLoading(false);
             }
         };
 
@@ -92,7 +93,13 @@ function AuthProvider({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, profile, setProfile }}>
+        <AuthContext.Provider
+            value={{
+                user,
+                isLoading,
+                profile,
+                setProfile,
+            }}>
             {children}
         </AuthContext.Provider>
     );

@@ -6,7 +6,6 @@ import { useAuth } from '../../contexts/AuthProvider';
 
 export default function AppLayout() {
     const { profile } = useAuth();
-    console.log('AppLayout profile:', profile);
     const handleLogout = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
@@ -15,10 +14,6 @@ export default function AppLayout() {
             console.log('User signed out successfully');
         }
     };
-
-    if (!profile) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <div>
