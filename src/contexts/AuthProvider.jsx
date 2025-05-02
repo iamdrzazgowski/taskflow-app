@@ -78,11 +78,12 @@ function AuthProvider({ children }) {
                 .eq('id', userId)
                 .single();
 
-            if (error) {
+            if (error && !data) {
                 console.error(
                     'Błąd przy pobieraniu danych użytkownika:',
                     error
                 );
+                setProfile(null);
             } else {
                 setProfile(data);
             }

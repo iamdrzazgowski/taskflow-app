@@ -37,6 +37,7 @@ export default function RegisterForm() {
                             id: userId,
                             first_name: firstName,
                             last_name: lastName,
+                            email,
                         },
                     ]);
 
