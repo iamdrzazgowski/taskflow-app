@@ -30,3 +30,10 @@ input[type='password'] {
     cursor: pointer;
     text-align: center;
 }
+
+.btn:disabled {
+    background-color: #a3b3e6;
+    color: #f0f0f0;
+    cursor: not-allowed;
+    opacity: 0.7;
+}

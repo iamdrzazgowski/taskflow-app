@@ -5,7 +5,6 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
-    const [profile, setProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -16,17 +15,10 @@ function AuthProvider({ children }) {
                     data: { session },
                 } = await supabase.auth.getSession();
 
-                if (session?.user) {
-                    setUser(session.user);
-                    await fetchUserData(session.user.id);
-                } else {
-                    setUser(null);
-                    setProfile(null);
-                }
+                setUser(session?.user || null);
             } catch (error) {
-                console.error('Nieoczekiwany błąd w getSession:', error);
+                console.error('Błąd przy pobieraniu sesji:', error);
                 setUser(null);
-                setProfile(null);
             } finally {
                 setIsLoading(false);
             }
@@ -35,16 +27,8 @@ function AuthProvider({ children }) {
         getSession();
 
         const { data: listener } = supabase.auth.onAuthStateChange(
-            (event, session) => {
-                const newUserId = session?.user?.id;
-
+            (_event, session) => {
                 setUser(session?.user || null);
-
-                if (newUserId) {
-                    fetchUserData(newUserId);
-                } else {
-                    setProfile(null);
-                }
             }
         );
 
@@ -53,35 +37,11 @@ function AuthProvider({ children }) {
         };
     }, []);
 
-    const fetchUserData = async (userId) => {
-        try {
-            const { data, error } = await supabase
-                .from('users')
-                .select('*')
-                .eq('id', userId)
-                .maybeSingle();
-
-            if (error && !data) {
-                console.error(
-                    'Błąd przy pobieraniu danych użytkownika:',
-                    error
-                );
-                setProfile(null);
-            } else {
-                setProfile(data);
-            }
-        } catch (error) {
-            console.error('Błąd przy pobieraniu danych użytkownika:', error);
-        }
-    };
-
     return (
         <AuthContext.Provider
             value={{
                 user,
                 isLoading,
-                profile,
-                setProfile,
             }}>
             {children}
         </AuthContext.Provider>

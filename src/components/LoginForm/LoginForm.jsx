@@ -18,6 +18,7 @@ export default function LoginForm() {
         if (!error) navigate('/dashboard');
         else alert('Login failed: ' + error.message);
     };
+
     return (
         <form onSubmit={handleLogin}>
             <div className={style.formGroup}>
@@ -38,7 +39,10 @@ export default function LoginForm() {
                     required
                 />
             </div>
-            <button type='submit' className={style.btn}>
+            <button
+                type='submit'
+                className={style.btn}
+                disabled={!email || !password}>
                 Login
             </button>
         </form>

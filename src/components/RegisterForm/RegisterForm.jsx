@@ -92,7 +92,16 @@ export default function RegisterForm() {
                 />
             </div>
 
-            <button type='submit' className={style.btn}>
+            <button
+                type='submit'
+                className={style.btn}
+                disabled={
+                    !firstName ||
+                    !lastName ||
+                    !email ||
+                    !password ||
+                    !confirmPassword
+                }>
                 Register
             </button>
         </form>

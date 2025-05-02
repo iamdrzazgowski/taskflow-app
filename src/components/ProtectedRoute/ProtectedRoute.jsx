@@ -4,13 +4,11 @@ import { Navigate } from 'react-router';
 import LoadingScreen from '../../pages/LoadingScreen/LoadingScreen';
 
 export default function ProtectedRoute({ children }) {
-    const { user, isLoading, profile } = useAuth();
+    const { user, isLoading } = useAuth();
 
     if (isLoading) return <LoadingScreen />;
 
     if (!user) return <Navigate to='/login' />;
-
-    if (!profile) return <LoadingScreen />;
 
     return children;
 }

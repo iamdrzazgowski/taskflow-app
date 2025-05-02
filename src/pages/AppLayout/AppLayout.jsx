@@ -1,19 +1,56 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router';
 import Navbar from '../../components/Navbar/Navbar';
 import supabase from '../../utils/supabaseClient';
 import { useAuth } from '../../contexts/AuthProvider';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 export default function AppLayout() {
-    const { profile } = useAuth();
+    const [profile, setProfile] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const { user } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            if (!user || profile) return;
+
+            setIsLoading(true);
+
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('id', user.id)
+                .maybeSingle();
+
+            if (error) {
+                console.error('Błąd przy pobieraniu profilu:', error);
+                setIsLoading(false);
+                return;
+            }
+
+            if (!data) {
+                navigate('/login');
+                return;
+            }
+
+            setProfile(data);
+            setIsLoading(false);
+        };
+
+        fetchProfile();
+    }, [user, navigate, profile]);
+
     const handleLogout = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
-            console.error('Error signing out:', error.message);
-        } else {
-            console.log('User signed out successfully');
+            console.error('Błąd przy wylogowaniu:', error.message);
         }
     };
+
+    if (isLoading || !profile) {
+        return <LoadingScreen />;
+    }
 
     return (
         <div>
