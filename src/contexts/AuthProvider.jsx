@@ -18,24 +18,31 @@ function AuthProvider({ children }) {
 
     useEffect(() => {
         const getSession = async () => {
-            setLoading(true);
-            const {
-                data: { session },
-            } = await supabase.auth.getSession();
+            try {
+                setLoading(true);
+                const {
+                    data: { session },
+                } = await supabase.auth.getSession();
 
-            if (session?.user) {
-                setUser(session.user);
-                if (lastUserIdRef.current !== session.user.id) {
-                    lastUserIdRef.current = session.user.id;
-                    await fetchUserData(session.user.id);
+                if (session?.user) {
+                    setUser(session.user);
+                    if (lastUserIdRef.current !== session.user.id) {
+                        lastUserIdRef.current = session.user.id;
+                        await fetchUserData(session.user.id);
+                    }
+                } else {
+                    setUser(null);
+                    setProfile(null);
+                    lastUserIdRef.current = null;
                 }
-            } else {
+            } catch (error) {
+                console.error('Nieoczekiwany błąd w getSession:', error);
                 setUser(null);
                 setProfile(null);
                 lastUserIdRef.current = null;
+            } finally {
+                setLoading(false);
             }
-
-            setLoading(false);
         };
 
         getSession();
