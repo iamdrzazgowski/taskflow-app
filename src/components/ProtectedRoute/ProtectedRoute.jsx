@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../../contexts/AuthProvider';
 import { Navigate } from 'react-router';
-import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import LoadingScreen from '../../pages/LoadingScreen/LoadingScreen';
 
 export default function ProtectedRoute({ children }) {
     const { user, isLoading, profile } = useAuth();
