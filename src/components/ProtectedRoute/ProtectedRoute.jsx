@@ -5,11 +5,7 @@ import { Navigate } from 'react-router';
 export default function ProtectedRoute({ children }) {
     const { user, loading } = useAuth();
 
-    console.log(loading);
-
-    if (loading) {
-        return <div>Ładowanie...</div>;
-    }
+    if (loading) return <div>Loading...</div>;
 
     if (!user) return <Navigate to='/login' />;
 

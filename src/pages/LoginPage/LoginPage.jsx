@@ -11,7 +11,7 @@ export default function LoginPage() {
         if (user && !loading) navigate('/app');
     }, [navigate, user, loading]);
 
-    if (loading) return <div>Ładowanie...</div>;
+    if (loading) return <div>Loading...</div>;
 
     if (user) return null;
 
