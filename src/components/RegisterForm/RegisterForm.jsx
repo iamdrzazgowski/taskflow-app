@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import supabase from '../../utils/supabaseClient';
 import style from './RegisterForm.module.css';
+import Spinner from '../Spinner/Spinner';
+import { useNavigate } from 'react-router';
 
 export default function RegisterForm() {
     const [email, setEmail] = useState('');
@@ -7,9 +10,63 @@ export default function RegisterForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
-    return (
-        <form>
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError('');
+
+        try {
+            if (password === confirmPassword) {
+                const { data, error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                });
+
+                if (error) {
+                    setError(error.message);
+                    return;
+                }
+
+                const userId = data?.user.id;
+
+                const { error: insertError } = await supabase
+                    .from('users')
+                    .insert([
+                        {
+                            id: userId,
+                            first_name: firstName,
+                            last_name: lastName,
+                        },
+                    ]);
+
+                if (insertError) {
+                    throw new Error(
+                        'Error inserting user into users table: ' +
+                            insertError.message
+                    );
+                } else {
+                    navigate('/login');
+                }
+            } else {
+                setError('Passwords do not match');
+                setIsLoading(false);
+                return;
+            }
+        } catch (err) {
+            setError('An error occurred while registering. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    return isLoading ? (
+        <Spinner />
+    ) : (
+        <form onSubmit={handleRegister}>
             <div className={style.fromRow}>
                 <div className={style.formGroup}>
                     <label htmlFor='first-name'>First Name</label>
