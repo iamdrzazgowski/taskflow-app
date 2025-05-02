@@ -1,10 +1,4 @@
-import React, {
-    createContext,
-    useContext,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import supabase from '../utils/supabaseClient';
 
 const AuthContext = createContext();
@@ -13,8 +7,6 @@ function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [profile, setProfile] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-
-    const lastUserIdRef = useRef(null);
 
     useEffect(() => {
         const getSession = async () => {
@@ -26,20 +18,15 @@ function AuthProvider({ children }) {
 
                 if (session?.user) {
                     setUser(session.user);
-                    if (lastUserIdRef.current !== session.user.id) {
-                        lastUserIdRef.current = session.user.id;
-                        await fetchUserData(session.user.id);
-                    }
+                    await fetchUserData(session.user.id);
                 } else {
                     setUser(null);
                     setProfile(null);
-                    lastUserIdRef.current = null;
                 }
             } catch (error) {
                 console.error('Nieoczekiwany błąd w getSession:', error);
                 setUser(null);
                 setProfile(null);
-                lastUserIdRef.current = null;
             } finally {
                 setIsLoading(false);
             }
@@ -50,17 +37,12 @@ function AuthProvider({ children }) {
         const { data: listener } = supabase.auth.onAuthStateChange(
             (event, session) => {
                 const newUserId = session?.user?.id;
+                setUser(session?.user || null);
 
-                if (newUserId !== lastUserIdRef.current) {
-                    setUser(session?.user || null);
-
-                    if (newUserId) {
-                        lastUserIdRef.current = newUserId;
-                        fetchUserData(newUserId);
-                    } else {
-                        setProfile(null);
-                        lastUserIdRef.current = null;
-                    }
+                if (newUserId) {
+                    fetchUserData(newUserId);
+                } else {
+                    setProfile(null);
                 }
             }
         );

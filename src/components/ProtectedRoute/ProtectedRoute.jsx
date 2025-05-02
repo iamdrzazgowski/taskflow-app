@@ -5,6 +5,7 @@ import LoadingScreen from '../../pages/LoadingScreen/LoadingScreen';
 
 export default function ProtectedRoute({ children }) {
     const { user, isLoading, profile } = useAuth();
+    console.log(isLoading);
 
     if (isLoading) return <LoadingScreen />;
 
