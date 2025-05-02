@@ -10,14 +10,12 @@ export default function RegisterForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        setError('');
 
         try {
             if (password === confirmPassword) {
@@ -27,8 +25,7 @@ export default function RegisterForm() {
                 });
 
                 if (error) {
-                    setError(error.message);
-                    return;
+                    throw new Error('Error signing up: ' + error.message);
                 }
 
                 const userId = data?.user.id;
@@ -52,12 +49,11 @@ export default function RegisterForm() {
                     navigate('/login');
                 }
             } else {
-                setError('Passwords do not match');
                 setIsLoading(false);
-                return;
+                throw new Error('Passwords do not match');
             }
         } catch (err) {
-            setError('An error occurred while registering. Please try again.');
+            throw new Error('Error during registration: ' + err.message);
         } finally {
             setIsLoading(false);
         }
