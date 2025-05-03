@@ -13,9 +13,8 @@ export function useRegister() {
         password,
         confirmPassword,
     }) => {
-        setIsLoading(true);
-
         try {
+            setIsLoading(true);
             if (password !== confirmPassword) {
                 setIsLoading(false);
                 throw new Error('Passwords do not match');
@@ -52,7 +51,6 @@ export function useRegister() {
             }
             navigate('/dashboard');
         } catch (err) {
-            console.error(err);
             throw new Error('Error during registration: ' + err.message);
         } finally {
             setIsLoading(false);

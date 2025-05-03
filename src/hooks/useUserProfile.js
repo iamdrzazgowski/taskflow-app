@@ -13,27 +13,32 @@ export function useUserProfile() {
         const fetchProfile = async () => {
             if (!user || profile) return;
 
-            setIsLoading(true);
+            try {
+                setIsLoading(true);
 
-            const { data, error } = await supabase
-                .from('users')
-                .select('*')
-                .eq('id', user.id)
-                .maybeSingle();
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('*')
+                    .eq('id', user.id)
+                    .maybeSingle();
 
-            if (error) {
-                console.error('Błąd przy pobieraniu profilu:', error);
+                if (error) {
+                    console.error('Błąd przy pobieraniu profilu:', error);
+                    setIsLoading(false);
+                    return;
+                }
+
+                if (!data) {
+                    navigate('/login');
+                    return;
+                }
+
+                setProfile(data);
+            } catch (error) {
+                throw new Error('Error fetching profile: ' + error.message);
+            } finally {
                 setIsLoading(false);
-                return;
             }
-
-            if (!data) {
-                navigate('/login');
-                return;
-            }
-
-            setProfile(data);
-            setIsLoading(false);
         };
 
         fetchProfile();
