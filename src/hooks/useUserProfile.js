@@ -5,7 +5,7 @@ import supabase from '../utils/supabaseClient';
 
 export function useUserProfile() {
     const [profile, setProfile] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isProfileLoading, setIsPofileLoading] = useState(true);
     const { user } = useAuth();
     const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ export function useUserProfile() {
             if (!user || profile) return;
 
             try {
-                setIsLoading(true);
+                setIsPofileLoading(true);
 
                 const { data, error } = await supabase
                     .from('users')
@@ -24,7 +24,7 @@ export function useUserProfile() {
 
                 if (error) {
                     console.error('Błąd przy pobieraniu profilu:', error);
-                    setIsLoading(false);
+                    setIsPofileLoading(false);
                     return;
                 }
 
@@ -37,12 +37,12 @@ export function useUserProfile() {
             } catch (error) {
                 throw new Error('Error fetching profile: ' + error.message);
             } finally {
-                setIsLoading(false);
+                setIsPofileLoading(false);
             }
         };
 
         fetchProfile();
     }, [user, navigate, profile]);
 
-    return { profile, isLoading };
+    return { profile, isProfileLoading };
 }

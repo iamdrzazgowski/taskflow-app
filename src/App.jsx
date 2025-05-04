@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import AppLayout from './pages/AppLayout/AppLayout';
 import HomePage from './pages/HomePage/HomePage';
+import { ProfileProvider } from './contexts/ProfileProvider';
 
 function App() {
     return (
@@ -17,7 +18,9 @@ function App() {
                         path='/app'
                         element={
                             <ProtectedRoute>
-                                <AppLayout />
+                                <ProfileProvider>
+                                    <AppLayout />
+                                </ProfileProvider>
                             </ProtectedRoute>
                         }>
                         <Route index element={<HomePage />} />
