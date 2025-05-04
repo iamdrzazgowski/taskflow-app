@@ -6,7 +6,7 @@ import supabase from '../../utils/supabaseClient';
 import HomeIcon from '../../assets/icons/HomeIcon';
 import TaskIcon from '../../assets/icons/TaskIcon';
 
-export default function Navbar({ profile }) {
+export default function AppNav() {
     const handleLogout = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
@@ -34,7 +34,7 @@ export default function Navbar({ profile }) {
 
                 <div className={style.sectionTitle}>Your Teams</div>
 
-                <UserTeams profile={profile} />
+                <UserTeams />
             </div>
             <div className={style.buttons}>
                 <button className={style.createNewTeamButton}>

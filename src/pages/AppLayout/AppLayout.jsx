@@ -14,7 +14,7 @@ export default function AppLayout() {
 
     return (
         <div className={style.container}>
-            <AppNav profile={profile} />
+            <AppNav />
 
             <div className={style.mainContent}>
                 <Outlet />

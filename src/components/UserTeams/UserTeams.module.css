@@ -1,0 +1,92 @@
+.userTeamsContainer {
+    max-height: 280px;
+    overflow-y: auto;
+
+    /* Styl scrollbarów */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Firefox */
+}
+
+.userTeamsContainer::-webkit-scrollbar {
+    width: 4px; /* Cienki scrollbar */
+}
+
+.userTeamsContainer::-webkit-scrollbar-track {
+    background: transparent; /* Brak tła toru */
+}
+
+.userTeamsContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Delikatny kolor suwaka */
+    border-radius: 8px; /* Zaokrąglone narożniki */
+}
+
+.teamContainer {
+    margin-bottom: 10px;
+}
+
+.teamHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 5px 0;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+    font-weight: 500;
+    color: #333;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    max-width: 248px;
+}
+
+.teamInfo {
+    display: flex;
+    align-items: center;
+}
+
+.teamHeader:hover {
+    background-color: #f7f7f7;
+}
+
+.teamExpandIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.teamLinks {
+    padding-left: 15px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.teamLink {
+    padding: 8px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s ease;
+    font-size: 14px;
+    margin: 2px 0;
+}
+
+.teamLink:hover {
+    background-color: #f7f7f7;
+}
+
+a:global(.active) {
+    background-color: #f0f4ff;
+    font-weight: 500;
+}
+
+.teamIcon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}

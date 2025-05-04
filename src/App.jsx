@@ -6,6 +6,8 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import AppLayout from './pages/AppLayout/AppLayout';
 import HomePage from './pages/HomePage/HomePage';
 import { ProfileProvider } from './contexts/ProfileProvider';
+import { TeamsProvider } from './contexts/TeamsProvider';
+import TeamTasks from './components/TeamTasks/TeamTasks';
 
 function App() {
     return (
@@ -19,22 +21,23 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <ProfileProvider>
-                                    <AppLayout />
+                                    <TeamsProvider>
+                                        <AppLayout />
+                                    </TeamsProvider>
                                 </ProfileProvider>
                             </ProtectedRoute>
                         }>
                         <Route index element={<HomePage />} />
-                        <Route path='teams' element={<div>Teams</div>} />
                         <Route
-                            path='teams/:teamId'
+                            path='team/:teamId'
                             element={<div>Team XD</div>}
                         />
                         <Route
-                            path='teams/:teamId/tasks'
-                            element={<div>Tasks</div>}
+                            path='team/:teamId/tasks'
+                            element={<TeamTasks />}
                         />
                         <Route
-                            path='teams/:teamId/members'
+                            path='team/:teamId/members'
                             element={<div>Members</div>}
                         />
                         <Route
