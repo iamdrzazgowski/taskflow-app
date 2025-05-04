@@ -5,6 +5,7 @@ const ProfileContext = createContext();
 
 function ProfileProvider({ children }) {
     const { profile, isProfileLoading } = useUserProfile();
+
     return (
         <ProfileContext.Provider value={{ profile, isProfileLoading }}>
             {children}
