@@ -5,8 +5,9 @@ import UserTeams from '../UserTeams/UserTeams';
 import supabase from '../../utils/supabaseClient';
 import HomeIcon from '../../assets/icons/HomeIcon';
 import TaskIcon from '../../assets/icons/TaskIcon';
+import CreateNewTeamForm from '../CreateNewTeamForm/CreateNewTeamForm';
 
-export default function AppNav() {
+export default function AppNav({ onOpenModal }) {
     const handleLogout = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
@@ -37,7 +38,13 @@ export default function AppNav() {
                 <UserTeams />
             </div>
             <div className={style.buttons}>
-                <button className={style.createNewTeamButton}>
+                <button
+                    className={style.createNewTeamButton}
+                    onClick={() =>
+                        onOpenModal((onClose) => (
+                            <CreateNewTeamForm onClose={onClose} />
+                        ))
+                    }>
                     Create New Team
                 </button>
                 <button className={style.logoutButton} onClick={handleLogout}>
