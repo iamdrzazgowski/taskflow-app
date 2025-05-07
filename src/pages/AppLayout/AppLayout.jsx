@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router';
 import AppNav from '../../components/AppNav/AppNav';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
@@ -8,18 +8,6 @@ import Modal from '../../components/Modal/Modal';
 
 export default function AppLayout() {
     const { profile, isProfileLoading } = useProfile();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalContent, setModalContent] = useState(null);
-
-    const handleOpenModal = (content) => {
-        setIsModalOpen(true);
-        setModalContent(() => content);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-        setModalContent(null);
-    };
 
     if (isProfileLoading || !profile) {
         return <LoadingScreen />;
@@ -27,15 +15,11 @@ export default function AppLayout() {
 
     return (
         <div className={style.container}>
-            <AppNav onOpenModal={handleOpenModal} />
+            <AppNav />
 
             <div className={style.mainContent}>
                 <Outlet />
             </div>
-
-            {isModalOpen && (
-                <Modal onClose={handleCloseModal}>{modalContent}</Modal>
-            )}
         </div>
     );
 }
