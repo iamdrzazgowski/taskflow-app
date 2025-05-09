@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function TaskCard({ task, isMenuOpen, toggleMenu }) {
+export default function TaskCard({
+    task,
+    isMenuOpen,
+    toggleMenu,
+    onDeleteTask,
+}) {
     return (
         <div className='task-card'>
             <div className='task-header'>
@@ -37,7 +42,9 @@ export default function TaskCard({ task, isMenuOpen, toggleMenu }) {
                         </div>
                         <div className='dropdown-separator'></div>
                         <div className='dropdown-section'>
-                            <button className='dropdown-button dropdown-delete'>
+                            <button
+                                className='dropdown-button dropdown-delete'
+                                onClick={() => onDeleteTask(task.id)}>
                                 <i className='fas fa-trash dropdown-icon'></i>{' '}
                                 Delete
                             </button>

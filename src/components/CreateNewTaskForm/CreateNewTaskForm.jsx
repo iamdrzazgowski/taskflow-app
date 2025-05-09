@@ -6,7 +6,7 @@ export default function CreateNewTaskForm({ members, setShowNewTaskForm }) {
             <div className='form-header'>
                 <h3 className='form-title'>Create New Task</h3>
                 <button
-                    class='form-close'
+                    className='form-close'
                     onClick={() => setShowNewTaskForm((prev) => !prev)}>
                     <i
                         className='fa-solid fa-xmark'

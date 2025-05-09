@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import KanbanColumn from '../KanbanColumn/KanbanColumn';
 import './KanbanBoard.css';
 
-export default function KanbanBoard({ tasks, members }) {
+export default function KanbanBoard({ tasks, members, setTasks }) {
     const [menuOpenTaskId, setMenuOpenTaskId] = useState(null);
 
     const toggleMenu = (taskId) => {
@@ -19,6 +19,8 @@ export default function KanbanBoard({ tasks, members }) {
                     isMenuOpen={menuOpenTaskId}
                     toggleMenu={toggleMenu}
                     members={members}
+                    allTasks={tasks}
+                    setTasks={setTasks}
                 />
                 <KanbanColumn
                     title='IN PROGRESS'
@@ -29,6 +31,8 @@ export default function KanbanBoard({ tasks, members }) {
                     isMenuOpen={menuOpenTaskId}
                     toggleMenu={toggleMenu}
                     members={members}
+                    allTasks={tasks}
+                    setTasks={setTasks}
                 />
                 <KanbanColumn
                     title='DONE'
@@ -37,6 +41,8 @@ export default function KanbanBoard({ tasks, members }) {
                     isMenuOpen={menuOpenTaskId}
                     toggleMenu={toggleMenu}
                     members={members}
+                    allTasks={tasks}
+                    setTasks={setTasks}
                 />
             </div>
         </div>

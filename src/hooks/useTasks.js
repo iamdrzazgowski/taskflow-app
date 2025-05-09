@@ -43,5 +43,5 @@ export function useTasks() {
         fetchTasks(teamId);
     }, [teamId]);
 
-    return { tasks, isTasksLoading };
+    return { tasks, setTasks, isTasksLoading };
 }

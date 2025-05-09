@@ -9,7 +9,7 @@ import KanbanBoard from '../KanbanBoard/KanbanBoard';
 export default function TeamTasks() {
     const { teamId } = useParams();
     const { userTeams, isTeamLoading } = useTeams();
-    const { tasks, isTasksLoading } = useTasks();
+    const { tasks, isTasksLoading, setTasks } = useTasks();
     const { members, isMembersLoading } = useMembers();
 
     const currentTeam = userTeams.find((team) => team.team.id === teamId);
@@ -25,7 +25,7 @@ export default function TeamTasks() {
         return <Spinner />;
     return (
         <div>
-            <KanbanBoard tasks={tasks} members={members} />
+            <KanbanBoard tasks={tasks} members={members} setTasks={setTasks} />
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TaskCard from '../TaskCard/TaskCard';
 import CreateNewTaskForm from '../CreateNewTaskForm/CreateNewTaskForm';
+import supabase from '../../utils/supabaseClient';
 
 export default function KanbanColumn({
     title,
@@ -9,8 +10,39 @@ export default function KanbanColumn({
     isMenuOpen,
     toggleMenu,
     members,
+    allTasks,
+    setTasks,
 }) {
     const [showNewTaskForm, setShowNewTaskForm] = useState(false);
+
+    const handleDeleteTask = async (taskId) => {
+        if (!taskId) {
+            console.error('Nieprawidłowe ID zadania:', taskId);
+            return;
+        }
+
+        console.log('Deleting task with ID:', taskId);
+        console.log(taskId);
+
+        try {
+            const { error } = await supabase
+                .from('task')
+                .delete()
+                .eq('id', taskId);
+
+            if (error) {
+                console.error('Error deleting task:', error);
+            } else {
+                console.log('Task deleted successfully');
+                const newTaskList = allTasks.filter(
+                    (task) => String(task.id) !== String(taskId)
+                );
+                setTasks(newTaskList);
+            }
+        } catch (error) {
+            console.error('Error deleting task:', error);
+        }
+    };
 
     return (
         <div className='kanban-column'>
@@ -28,6 +60,7 @@ export default function KanbanColumn({
                         task={task}
                         isMenuOpen={isMenuOpen}
                         toggleMenu={toggleMenu}
+                        onDeleteTask={handleDeleteTask}
                     />
                 ))}
                 {showNewTaskForm ? (
