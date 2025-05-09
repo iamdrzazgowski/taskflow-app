@@ -1,0 +1,369 @@
+/* Board */
+.kanban-board {
+    display: flex;
+    flex: 1;
+    overflow-x: auto;
+    padding: 16px;
+    gap: 16px;
+    align-items: stretch;
+    justify-content: center;
+}
+
+/* Kolumny */
+.kanban-column {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    min-width: 288px;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    min-height: 600px;
+}
+
+.column-header {
+    padding: 12px;
+    background-color: #ffffff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.column-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.column-color-todo {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #3b82f6;
+    margin-right: 8px;
+}
+
+.column-color-in-progress {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #eab308;
+    margin-right: 8px;
+}
+
+.column-color-done {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #22c55e;
+    margin-right: 8px;
+}
+
+.task-count {
+    margin-left: 8px;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.column-content {
+    padding: 8px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Zadania */
+.task-card {
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    position: relative;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 0 12px 0;
+}
+
+.task-title {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.task-menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    padding: 0 12px;
+    flex: 0 1 auto;
+}
+
+.task-description {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.task-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.task-assignee {
+    display: flex;
+    align-items: center;
+}
+
+.assignee-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.assignee-name {
+    font-size: 12px;
+    color: #6b7280;
+    margin-left: 4px;
+}
+
+.task-deadline {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.deadline-icon {
+    margin-right: 4px;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    margin-top: 30px;
+    width: 192px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 10;
+    border: 1px solid #e5e7eb;
+}
+
+.dropdown-section {
+    padding: 4px 0;
+}
+
+.dropdown-button {
+    width: 100%;
+    text-align: left;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #374151;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-button:hover {
+    background-color: #f3f4f6;
+}
+
+.dropdown-section-title {
+    padding: 4px 16px;
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.dropdown-icon {
+    margin-right: 8px;
+}
+
+.dropdown-delete {
+    color: #ef4444;
+}
+
+.dropdown-separator {
+    border-top: 1px solid #f3f4f6;
+    margin: 4px 0;
+}
+
+/* Formularze */
+.task-form {
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.form-title {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    flex: 0;
+    padding: 4px 12px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    height: 64px;
+    resize: none;
+}
+
+.form-row {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.form-column {
+    flex: 1;
+}
+
+.form-column:first-child {
+    padding-right: 4px;
+}
+
+.form-column:last-child {
+    padding-left: 4px;
+}
+
+.form-select,
+.form-date {
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-cancel {
+    background-color: #e5e7eb;
+    color: #4b5563;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.button-submit {
+    background-color: #3b82f6;
+    color: white;
+
+    border-radius: 4px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Add task button */
+.add-task-button {
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.add-task-button:hover {
+    background-color: #e5e7eb;
+}
+
+.add-icon {
+    margin-right: 4px;
+}
+
+/* Kolorowe awatary dla osób */
+.avatar-blue {
+    background-color: #3b82f6;
+}
+
+.avatar-green {
+    background-color: #22c55e;
+}
+
+.avatar-purple {
+    background-color: #8b5cf6;
+}
+
+.avatar-yellow {
+    background-color: #eab308;
+}
+
+/* Edycja zadania */
+.edit-form {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+}
+
+/* Unassigned task */
+.unassigned {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.unassigned-icon {
+    margin-right: 4px;
+}

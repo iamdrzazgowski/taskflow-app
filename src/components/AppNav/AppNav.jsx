@@ -3,8 +3,6 @@ import style from './AppNav.module.css';
 import { NavLink } from 'react-router';
 import UserTeams from '../UserTeams/UserTeams';
 import supabase from '../../utils/supabaseClient';
-import HomeIcon from '../../assets/icons/HomeIcon';
-import TaskIcon from '../../assets/icons/TaskIcon';
 import CreateNewTeamForm from '../CreateNewTeamForm/CreateNewTeamForm';
 import Modal from '../Modal/Modal';
 
@@ -37,11 +35,19 @@ export default function AppNav() {
 
                     <div className={style.sectionTitle}>Navigation</div>
                     <NavLink className={style.navItem} to='/app' end>
-                        <div className={style.navItemIcon}>{<HomeIcon />}</div>
+                        <div className={style.navItemIcon}>
+                            <i
+                                className='fa-solid fa-house'
+                                style={{ color: '#212121' }}></i>
+                        </div>
                         <span>Homepage</span>
                     </NavLink>
                     <NavLink className={style.navItem} to='userTasks'>
-                        <div className={style.navItemIcon}>{<TaskIcon />}</div>
+                        <div className={style.navItemIcon}>
+                            <i
+                                className='fa-solid fa-list-check'
+                                style={{ color: '#212121' }}></i>
+                        </div>
                         <span>My tasks</span>
                     </NavLink>
 

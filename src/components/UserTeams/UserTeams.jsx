@@ -3,8 +3,6 @@ import { useTeams } from '../../contexts/TeamsProvider';
 import Spinner from '../Spinner/Spinner';
 import { NavLink, useParams } from 'react-router';
 import styles from './UserTeams.module.css';
-import ArrowUp from '../../assets/icons/ArrowUp';
-import ArrowDown from '../../assets/icons/ArrowDown';
 
 export default function UserTeams() {
     const { userTeams, isTeamsLoading } = useTeams();
@@ -54,9 +52,13 @@ function TeamItem({ userTeam }) {
                 </div>
                 <span className={styles.teamExpandIcon}>
                     {isExpanded ? (
-                        <ArrowUp className={styles.arrowIcon} />
+                        <i
+                            className='fa-solid fa-angle-up'
+                            style={{ color: '#212121' }}></i>
                     ) : (
-                        <ArrowDown className={styles.arrowIcon} />
+                        <i
+                            className='fa-solid fa-angle-down'
+                            style={{ color: '#212121' }}></i>
                     )}
                 </span>
             </button>
