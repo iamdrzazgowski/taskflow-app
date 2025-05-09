@@ -120,6 +120,12 @@
     border-top: 1px solid #f3f4f6;
 }
 
+.task-edit-form {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #f3f4f6;
+}
+
 .task-assignee {
     display: flex;
     align-items: center;
@@ -286,6 +292,7 @@
 .form-actions {
     display: flex;
     justify-content: flex-end;
+    gap: 8px;
 }
 
 .button-cancel {

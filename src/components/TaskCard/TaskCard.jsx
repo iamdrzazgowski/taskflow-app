@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import EditTaskForm from '../EditTaskForm/EditTaskForm';
 
 export default function TaskCard({
     task,
     isMenuOpen,
     toggleMenu,
     onDeleteTask,
+    members,
 }) {
+    const [isEditMode, setIsEditMode] = useState(false);
+
+    const handleOpenEditMode = () => {
+        toggleMenu(null);
+        setIsEditMode((prev) => !prev);
+    };
+
     return (
         <div className='task-card'>
             <div className='task-header'>
@@ -21,7 +30,9 @@ export default function TaskCard({
                 {isMenuOpen === task.id && (
                     <div className='dropdown-menu'>
                         <div className='dropdown-section'>
-                            <button className='dropdown-button'>
+                            <button
+                                className='dropdown-button'
+                                onClick={handleOpenEditMode}>
                                 <i className='fas fa-edit dropdown-icon'></i>{' '}
                                 Edit
                             </button>
@@ -53,23 +64,33 @@ export default function TaskCard({
                 )}
             </div>
             <p className='task-description'>{task.description}</p>
-            <div className='task-footer'>
-                <div className='task-assignee'>
-                    <div className={`assignee-avatar`}>
-                        <i
-                            className='fa-solid fa-circle-user'
-                            style={{ color: '#212121' }}></i>
+            {isEditMode ? (
+                <EditTaskForm
+                    task={task}
+                    members={members}
+                    setIsEditMode={setIsEditMode}
+                />
+            ) : (
+                <>
+                    <div className='task-footer'>
+                        <div className='task-assignee'>
+                            <div className={`assignee-avatar`}>
+                                <i
+                                    className='fa-solid fa-circle-user'
+                                    style={{ color: '#212121' }}></i>
+                            </div>
+                            <span className='assignee-name'>
+                                {task.assigned_user.first_name}{' '}
+                                {task.assigned_user.last_name}
+                            </span>
+                        </div>
+                        <div className='task-deadline'>
+                            <i className='fas fa-calendar deadline-icon'></i>
+                            <span>{task.deadline}</span>
+                        </div>
                     </div>
-                    <span className='assignee-name'>
-                        {task.assigned_user.first_name}{' '}
-                        {task.assigned_user.last_name}
-                    </span>
-                </div>
-                <div className='task-deadline'>
-                    <i className='fas fa-calendar deadline-icon'></i>
-                    <span>{task.deadline}</span>
-                </div>
-            </div>
+                </>
+            )}
         </div>
     );
 }

@@ -65,7 +65,7 @@ export default function CreateNewTaskForm({
             <input
                 type='text'
                 name='title'
-                placeholder='Task name'
+                placeholder='Task title'
                 className='form-input'
                 value={taskName}
                 onChange={(e) => setTaskName(e.target.value)}

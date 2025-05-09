@@ -22,9 +22,6 @@ export default function KanbanColumn({
             return;
         }
 
-        console.log('Deleting task with ID:', taskId);
-        console.log(taskId);
-
         try {
             const { error } = await supabase
                 .from('task')
@@ -34,7 +31,6 @@ export default function KanbanColumn({
             if (error) {
                 console.error('Error deleting task:', error);
             } else {
-                console.log('Task deleted successfully');
                 const newTaskList = allTasks.filter(
                     (task) => String(task.id) !== String(taskId)
                 );
@@ -62,6 +58,7 @@ export default function KanbanColumn({
                         isMenuOpen={isMenuOpen}
                         toggleMenu={toggleMenu}
                         onDeleteTask={handleDeleteTask}
+                        members={members}
                     />
                 ))}
                 {showNewTaskForm ? (
