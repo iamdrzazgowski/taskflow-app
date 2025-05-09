@@ -38,10 +38,3 @@ export function useCreateTeam() {
     };
     return { createTeam, loading, error };
 }
-
-// const { data, error } = await supabase.from('teams').insert([
-//     {
-//         name: 'Team A',
-//         user_teams: [{ user_id: userId }],
-//     },
-// ]);

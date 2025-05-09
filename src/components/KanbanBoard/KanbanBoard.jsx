@@ -21,6 +21,7 @@ export default function KanbanBoard({ tasks, members, setTasks }) {
                     members={members}
                     allTasks={tasks}
                     setTasks={setTasks}
+                    taskStatus='todo'
                 />
                 <KanbanColumn
                     title='IN PROGRESS'
@@ -33,6 +34,7 @@ export default function KanbanBoard({ tasks, members, setTasks }) {
                     members={members}
                     allTasks={tasks}
                     setTasks={setTasks}
+                    taskStatus='in_progress'
                 />
                 <KanbanColumn
                     title='DONE'
@@ -43,6 +45,7 @@ export default function KanbanBoard({ tasks, members, setTasks }) {
                     members={members}
                     allTasks={tasks}
                     setTasks={setTasks}
+                    taskStatus='done'
                 />
             </div>
         </div>

@@ -6,7 +6,7 @@ import { useCreateTeam } from '../../hooks/useCreateTeam';
 
 export default function CreateNewTeamForm({ onClose }) {
     const [teamName, setTeamName] = useState('');
-    const { userTeams, setUserTeams } = useTeams();
+    const { setUserTeams } = useTeams();
     const { profile } = useProfile();
     const { createTeam } = useCreateTeam();
 
@@ -25,7 +25,7 @@ export default function CreateNewTeamForm({ onClose }) {
 
         setUserTeams((prevTeams) => [...prevTeams, newTeam]);
         createTeam(teamName, teamId, userId);
-        console.log(userTeams);
+        onClose();
     };
 
     return (

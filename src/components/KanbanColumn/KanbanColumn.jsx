@@ -12,6 +12,7 @@ export default function KanbanColumn({
     members,
     allTasks,
     setTasks,
+    taskStatus,
 }) {
     const [showNewTaskForm, setShowNewTaskForm] = useState(false);
 
@@ -67,6 +68,8 @@ export default function KanbanColumn({
                     <CreateNewTaskForm
                         members={members}
                         setShowNewTaskForm={setShowNewTaskForm}
+                        taskStatus={taskStatus}
+                        setTasks={setTasks}
                     />
                 ) : (
                     <button
