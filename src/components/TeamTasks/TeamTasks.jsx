@@ -23,9 +23,6 @@ export default function TeamTasks() {
         !members
     )
         return <Spinner />;
-
-    console.log('Tasks:', tasks);
-    console.log('Members:', members);
     return (
         <div>
             <KanbanBoard tasks={tasks} members={members} />

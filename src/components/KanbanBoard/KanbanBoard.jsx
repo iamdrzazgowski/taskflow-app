@@ -9,8 +9,6 @@ export default function KanbanBoard({ tasks, members }) {
         setMenuOpenTaskId((prev) => (prev === taskId ? null : taskId));
     };
 
-    console.log(members);
-
     return (
         <div className='kanban-container'>
             <div className='kanban-board'>

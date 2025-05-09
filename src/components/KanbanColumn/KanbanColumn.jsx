@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TaskCard from '../TaskCard/TaskCard';
+import CreateNewTaskForm from '../CreateNewTaskForm/CreateNewTaskForm';
 
 export default function KanbanColumn({
     title,
@@ -30,55 +31,10 @@ export default function KanbanColumn({
                     />
                 ))}
                 {showNewTaskForm ? (
-                    <div className='task-form'>
-                        <div className='form-header'>
-                            <h3 className='form-title'>Create New Task</h3>
-                            <button
-                                class='form-close'
-                                onClick={() =>
-                                    setShowNewTaskForm(!showNewTaskForm)
-                                }>
-                                <i
-                                    className='fa-solid fa-xmark'
-                                    style={{ color: '#212121' }}></i>
-                            </button>
-                        </div>
-                        <input
-                            type='text'
-                            name='title'
-                            placeholder='Task name'
-                            className='form-input'
-                        />
-                        <textarea
-                            name='description'
-                            placeholder='Task description'
-                            className='form-textarea'></textarea>
-                        <div className='form-row'>
-                            <div className='form-column'>
-                                <select name='assignee' className='form-select'>
-                                    <option value=''>Select person</option>
-                                    {members.map((member) => (
-                                        <option
-                                            key={member.user.id}
-                                            value={member.user.id}>
-                                            {member.user.first_name}{' '}
-                                            {member.user.last_name}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className='form-column'>
-                                <input
-                                    type='date'
-                                    name='deadline'
-                                    className='form-date'
-                                />
-                            </div>
-                        </div>
-                        <div className='form-actions'>
-                            <button className='button-submit'>ADD</button>
-                        </div>
-                    </div>
+                    <CreateNewTaskForm
+                        members={members}
+                        setShowNewTaskForm={setShowNewTaskForm}
+                    />
                 ) : (
                     <button
                         className='add-task-button'

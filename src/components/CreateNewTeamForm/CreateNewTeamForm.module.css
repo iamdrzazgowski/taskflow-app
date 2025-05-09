@@ -46,12 +46,14 @@ button {
 }
 
 .addButton {
-    background-color: #b8c7f0;
-    color: #333;
+    background-color: #3b82f6;
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .addButton:hover {
-    background-color: #a5b6e9;
+    background-color: #2563eb;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
 }
 
 .closeButton {
