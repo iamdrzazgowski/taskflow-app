@@ -6,6 +6,13 @@ import { useTasks } from '../../hooks/useTasks';
 import { useMembers } from '../../hooks/useMembers';
 import KanbanBoard from '../KanbanBoard/KanbanBoard';
 
+const spinnerContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+};
+
 export default function TeamTasks() {
     const { teamId } = useParams();
     const { userTeams, isTeamLoading } = useTeams();
@@ -22,7 +29,11 @@ export default function TeamTasks() {
         isMembersLoading ||
         !members
     )
-        return <Spinner />;
+        return (
+            <div style={spinnerContainerStyle}>
+                <Spinner />
+            </div>
+        );
     return (
         <div>
             <KanbanBoard tasks={tasks} members={members} setTasks={setTasks} />
