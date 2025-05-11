@@ -7,6 +7,8 @@ export default function TaskCard({
     toggleMenu,
     onDeleteTask,
     members,
+    allTasks,
+    setTasks,
 }) {
     const [isEditMode, setIsEditMode] = useState(false);
 
@@ -69,6 +71,8 @@ export default function TaskCard({
                     task={task}
                     members={members}
                     setIsEditMode={setIsEditMode}
+                    allTasks={allTasks}
+                    setTasks={setTasks}
                 />
             ) : (
                 <>

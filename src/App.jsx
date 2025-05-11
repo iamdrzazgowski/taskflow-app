@@ -29,10 +29,6 @@ function App() {
                         }>
                         <Route index element={<HomePage />} />
                         <Route
-                            path='team/:teamId'
-                            element={<div>Team XD</div>}
-                        />
-                        <Route
                             path='team/:teamId/tasks'
                             element={<TeamTasks />}
                         />

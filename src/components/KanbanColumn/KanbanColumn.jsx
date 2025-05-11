@@ -59,6 +59,8 @@ export default function KanbanColumn({
                         toggleMenu={toggleMenu}
                         onDeleteTask={handleDeleteTask}
                         members={members}
+                        allTasks={allTasks}
+                        setTasks={setTasks}
                     />
                 ))}
                 {showNewTaskForm ? (
