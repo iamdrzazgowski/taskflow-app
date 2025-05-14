@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import EditTaskForm from '../EditTaskForm/EditTaskForm';
+import supabase from '../../utils/supabaseClient';
 
 export default function TaskCard({
     task,
@@ -15,6 +16,30 @@ export default function TaskCard({
     const handleOpenEditMode = () => {
         toggleMenu(null);
         setIsEditMode((prev) => !prev);
+    };
+
+    const handleChangeStatus = async (status) => {
+        try {
+            const { error } = await supabase
+                .from('task')
+                .update({ status })
+                .eq('id', task.id);
+            if (error) {
+                console.error('Error changing task status:', error);
+            }
+
+            const updateTasks = allTasks.map((t) => {
+                if (t.id === task.id) {
+                    return { ...t, status };
+                }
+                return t;
+            });
+
+            setTasks(updateTasks);
+            toggleMenu(null);
+        } catch (error) {
+            console.error('Error changing task status:', error);
+        }
     };
 
     return (
@@ -44,11 +69,23 @@ export default function TaskCard({
                             <div className='dropdown-section-title'>
                                 Change status:
                             </div>
-                            <button className='dropdown-button'>
+                            <button
+                                className='dropdown-button'
+                                onClick={() => handleChangeStatus('todo')}>
+                                <div className='column-color-todo dropdown-icon'></div>{' '}
+                                Move to TODO
+                            </button>
+                            <button
+                                className='dropdown-button'
+                                onClick={() =>
+                                    handleChangeStatus('in_progress')
+                                }>
                                 <div className='column-color-in-progress dropdown-icon'></div>{' '}
                                 Move to IN PROGRESS
                             </button>
-                            <button className='dropdown-button'>
+                            <button
+                                className='dropdown-button'
+                                onClick={() => handleChangeStatus('done')}>
                                 <div className='column-color-done dropdown-icon'></div>{' '}
                                 Move to DONE
                             </button>
