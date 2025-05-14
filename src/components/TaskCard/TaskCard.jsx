@@ -19,6 +19,11 @@ export default function TaskCard({
     };
 
     const handleChangeStatus = async (status) => {
+        if (task.status === status) {
+            toggleMenu(null);
+            return;
+        }
+
         try {
             const { error } = await supabase
                 .from('task')

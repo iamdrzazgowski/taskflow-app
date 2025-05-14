@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage/HomePage';
 import { ProfileProvider } from './contexts/ProfileProvider';
 import { TeamsProvider } from './contexts/TeamsProvider';
 import TeamTasks from './components/TeamTasks/TeamTasks';
+import MembersList from './components/MembersList/MembersList';
 
 function App() {
     return (
@@ -34,7 +35,7 @@ function App() {
                         />
                         <Route
                             path='team/:teamId/members'
-                            element={<div>Members</div>}
+                            element={<MembersList />}
                         />
                         <Route
                             path='userTasks'
