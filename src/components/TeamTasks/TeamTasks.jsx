@@ -5,6 +5,7 @@ import Spinner from '../Spinner/Spinner';
 import { useTasks } from '../../hooks/useTasks';
 import { useMembers } from '../../hooks/useMembers';
 import KanbanBoard from '../KanbanBoard/KanbanBoard';
+import ErrorPanel from '../ErrorPanel/ErrorPanel';
 
 const spinnerContainerStyle = {
     display: 'flex',
@@ -21,19 +22,30 @@ export default function TeamTasks() {
 
     const currentTeam = userTeams.find((team) => team.team.id === teamId);
 
-    if (
+    const isLoading =
         isTeamLoading ||
-        !currentTeam ||
         !tasks ||
         isTasksLoading ||
         isMembersLoading ||
-        !members
-    )
+        !members;
+
+    if (isLoading) {
         return (
             <div style={spinnerContainerStyle}>
                 <Spinner />
             </div>
         );
+    }
+    // TODO: Dodać przekierowanie do /app
+
+    if (!currentTeam) {
+        return (
+            <div style={spinnerContainerStyle}>
+                <ErrorPanel />
+            </div>
+        );
+    }
+
     return (
         <div>
             <KanbanBoard tasks={tasks} members={members} setTasks={setTasks} />

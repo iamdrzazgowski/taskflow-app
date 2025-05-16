@@ -1,0 +1,169 @@
+.taskCard {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 280px;
+    padding: 20px;
+    position: relative;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.statusBadge {
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.menuToggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #555;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    flex: none;
+}
+
+.menuToggle:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.dropdownMenu.active {
+    display: block;
+}
+
+.dropdownMenuHeader {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+}
+
+.statusOptions {
+    list-style: none;
+}
+
+.statusOption {
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.statusOption:hover {
+    background-color: #f7f7f7;
+}
+
+.statusOption.active {
+    background-color: #f0f0f0;
+    font-weight: 500;
+}
+
+.statusOptionIndicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.indicatorNotStarted {
+    background-color: #3b82f6;
+}
+
+.indicatorInProgress {
+    background-color: #eab308;
+}
+
+.indicatorDone {
+    background-color: #22c55e;
+}
+
+.taskTitle {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: #222;
+    text-align: left;
+}
+
+.taskDescription {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.infoSection {
+    margin-bottom: 8px;
+}
+
+.infoLabel {
+    font-size: 10px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.infoValue {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.teamBadge {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-top: 16px;
+}
+
+.teamBadgeDot {
+    width: 8px;
+    height: 8px;
+    background-color: #3498db;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.teamBadgeText {
+    font-size: 14px;
+    color: #555;
+}

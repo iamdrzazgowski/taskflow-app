@@ -9,6 +9,7 @@ import { ProfileProvider } from './contexts/ProfileProvider';
 import { TeamsProvider } from './contexts/TeamsProvider';
 import TeamTasks from './components/TeamTasks/TeamTasks';
 import MembersList from './components/MembersList/MembersList';
+import UserTasks from './components/UserTasks/UserTasks';
 
 function App() {
     return (
@@ -37,10 +38,7 @@ function App() {
                             path='team/:teamId/members'
                             element={<MembersList />}
                         />
-                        <Route
-                            path='userTasks'
-                            element={<div>User Tasks</div>}
-                        />
+                        <Route path='userTasks' element={<UserTasks />} />
                     </Route>
                     <Route path='*' element={<Navigate to='/app' />} />
                 </Routes>

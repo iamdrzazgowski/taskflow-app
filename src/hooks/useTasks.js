@@ -30,7 +30,7 @@ export function useTasks() {
                     .eq('team_id', teamId);
 
                 if (error) {
-                    console.error('Error fetching tasks:', error);
+                    throw new Error('Error fetching tasks:', error);
                 }
 
                 setTasks(data || []);

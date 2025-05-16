@@ -9,6 +9,7 @@ import supabase from '../../utils/supabaseClient';
 import { useProfile } from '../../contexts/ProfileProvider';
 import { useParams } from 'react-router';
 import SearchBar from '../SearchBar/SearchBar';
+import ErrorPanel from '../ErrorPanel/ErrorPanel';
 
 const spinnerContainerStyle = {
     display: 'flex',
@@ -25,6 +26,7 @@ export default function MembersList() {
     const { members, isMembersLoading, setMembers } = useMembers();
 
     const userRole = userTeams.find((team) => team.team.id === teamId)?.role;
+    const currentTeam = userTeams.find((team) => team.team.id === teamId);
 
     const handleDeleteMember = async (userId) => {
         try {
@@ -52,9 +54,19 @@ export default function MembersList() {
             </div>
         );
 
+    if (!currentTeam) {
+        return (
+            <div style={spinnerContainerStyle}>
+                <ErrorPanel />
+            </div>
+        );
+    }
+
     return (
         <>
-            <SearchBar setMembers={setMembers} members={members} />
+            {userRole === 'lider' && (
+                <SearchBar setMembers={setMembers} members={members} />
+            )}
             <div className='members-list' id='membersList'>
                 {members.map((member) => (
                     <MemberCard
