@@ -17,7 +17,7 @@
     min-width: 288px;
     background-color: #f3f4f6;
     border-radius: 8px;
-    height: 600px;
+    max-height: 600px;
     overflow: auto;
 }
 
