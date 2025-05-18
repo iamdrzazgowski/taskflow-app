@@ -1,6 +1,6 @@
 import React from 'react';
 import { useProfile } from '../../contexts/ProfileProvider';
-import './HomePage.css';
+import styles from './HomePage.module.css';
 import UserTasks from '../../components/UserTasks/UserTasks';
 
 export default function HomePage() {
@@ -8,17 +8,13 @@ export default function HomePage() {
 
     return (
         <>
-            <div>
-                <div class='welcome-banner'>
-                    <div class='welcome-message'>
-                        <div class='welcome-title'>
-                            Witaj, {profile.first_name}!
-                        </div>
-                        <div class='welcome-subtitle'>
-                            Masz 3 zadania zaplanowane na dziś.
-                        </div>
-                    </div>
-                </div>
+            <div className={styles.welcomeScreen}>
+                <img src='welcome_image.svg' className={styles.welcomeImage} />
+                <h1 className={styles.welcomeHeader}>Welcome to TaskFlow!</h1>
+                <p className={styles.welcomeSubtitle}>
+                    Your personal task assistant. Manage your tasks quickly and
+                    efficiently.
+                </p>
             </div>
         </>
     );

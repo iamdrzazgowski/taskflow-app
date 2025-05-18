@@ -17,7 +17,8 @@
     min-width: 288px;
     background-color: #f3f4f6;
     border-radius: 8px;
-    min-height: 600px;
+    height: 600px;
+    overflow: auto;
 }
 
 .column-header {
@@ -168,7 +169,7 @@
     border-radius: 6px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
         0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    z-index: 10;
+    z-index: 100;
     border: 1px solid #e5e7eb;
 }
 
