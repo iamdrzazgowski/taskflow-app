@@ -30,13 +30,24 @@ export default function MembersList() {
 
     const handleDeleteMember = async (userId) => {
         try {
-            const { error } = await supabase
+            const { error: deleteUserError } = await supabase
                 .from('user_team')
                 .delete()
                 .eq('user_id', userId)
                 .eq('team_id', teamId);
-            if (error) {
-                console.error('Error deleting member:', error);
+            if (deleteUserError) {
+                console.error('Error deleting member:', deleteUserError);
+                return;
+            }
+
+            const { error: deleteTaskError } = await supabase
+                .from('task')
+                .delete()
+                .eq('user_id', userId)
+                .eq('team_id', teamId);
+
+            if (deleteTaskError) {
+                console.error('Error deleting tasks:', deleteTaskError);
                 return;
             }
             setMembers((prevMembers) =>

@@ -1,0 +1,39 @@
+.errorContainer {
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.errorIcon {
+    background-color: #f2f2f2;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 24px;
+}
+
+.errorIcon svg {
+    width: 40px;
+    height: 40px;
+    fill: #6c757d;
+}
+
+.errorTitle {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.errorMessage {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 28px;
+}

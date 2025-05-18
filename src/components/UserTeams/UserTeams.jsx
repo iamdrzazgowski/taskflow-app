@@ -3,6 +3,16 @@ import { useTeams } from '../../contexts/TeamsProvider';
 import Spinner from '../Spinner/Spinner';
 import { NavLink, useParams } from 'react-router';
 import styles from './UserTeams.module.css';
+import Message from '../Message/Message';
+
+const messageStyles = {
+    backgroundColor: '#f0f4ff',
+    padding: '12px 16px',
+    borderRadius: '8px',
+    margin: '12px 0',
+    color: '#333',
+    textAlign: 'center',
+};
 
 export default function UserTeams() {
     const { userTeams, isTeamsLoading } = useTeams();
@@ -10,9 +20,16 @@ export default function UserTeams() {
 
     return (
         <div className={styles.userTeamsContainer}>
-            {userTeams.map((userTeam) => (
-                <TeamItem key={userTeam.team.id} userTeam={userTeam} />
-            ))}
+            {userTeams.length > 0 ? (
+                userTeams.map((userTeam) => (
+                    <TeamItem key={userTeam.team.id} userTeam={userTeam} />
+                ))
+            ) : (
+                <Message
+                    text='You are not a member of any team.'
+                    style={messageStyles}
+                />
+            )}
         </div>
     );
 }

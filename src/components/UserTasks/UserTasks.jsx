@@ -3,6 +3,7 @@ import supabase from '../../utils/supabaseClient';
 import useUserTasks from '../../hooks/useUserTasks';
 import Spinner from '../Spinner/Spinner';
 import UserTaskCard from '../UserTaskCard/UserTaskCard';
+import UserTasksError from '../UserTasksError/UserTasksError';
 
 const spinnerContainerStyle = {
     display: 'flex',
@@ -61,16 +62,22 @@ export default function UserTasks() {
         );
 
     return (
-        <div style={cardContainerStyle}>
-            {userTasks.map((task) => (
-                <UserTaskCard
-                    key={task.id}
-                    task={task}
-                    onChangeStatus={handleChangeStatus}
-                    isMenuOpen={menuOpenTaskId}
-                    toggleMenu={toggleMenu}
-                />
-            ))}
-        </div>
+        <>
+            {userTasks.length > 0 ? (
+                <div style={cardContainerStyle}>
+                    {userTasks.map((task) => (
+                        <UserTaskCard
+                            key={task.id}
+                            task={task}
+                            onChangeStatus={handleChangeStatus}
+                            isMenuOpen={menuOpenTaskId}
+                            toggleMenu={toggleMenu}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <UserTasksError />
+            )}
+        </>
     );
 }
