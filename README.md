@@ -28,7 +28,7 @@ zainstalowane:
     npm run dev
     ```
 
-4. Otworzenie linku wyświetlonego w terminalu lub wpisanie w przeglądarkę
+4. Otworzenie linku wyświetlonego w terminalu lub ręczne wpisanie w przeglądarkę
    adresu:
 
     ```bash
