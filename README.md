@@ -48,3 +48,19 @@ kompatybilnością.
     ```bash
     http://localhost:5173
     ```
+
+## Konta testowe
+
+Możesz skorzystać z poniższych kont do testowania aplikacji:
+
+Konto 1:
+
+Email: user1@example.com
+
+Hasło: user11234
+
+Konto 2:
+
+Email: user2@example.com
+
+Hasło: user21234
