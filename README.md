@@ -1,12 +1,26 @@
 # Aplikacja
 
+## Opis aplikacji
+
+Aplikacja umożliwia zarządzanie zespołami i zadaniami. Główne funkcjonalności
+to:
+
+-   Rejestracja i logowanie użytkowników
+-   Tworzenie zespołów przez zalogowanych użytkowników
+-   Dodawanie członków do zespołu
+-   Tworzenie i przypisywanie zadań w ramach zespołu
+
+System wspiera współpracę w grupie i pozwala na efektywne zarządzanie zadaniami.
+
 ## Wymagania wstępne
 
-Przed rozpoczęciem upewnij się, że posiadasz połączenie z internetem oraz masz
-zainstalowane:
+Aplikacja została przygotowana i przetestowana przy użyciu następujących wersji:
 
--   [Node.js](https://nodejs.org/) (zalecana wersja LTS)
--   [npm](https://www.npmjs.com/)
+-   [Node.js](https://nodejs.org/) (zalecana wersja LTS, wersja v23.9.0)
+-   [npm](https://www.npmjs.com/) (wersja 11.1.0)
+
+Zaleca się korzystanie z tych wersji w celu uniknięcia problemów z
+kompatybilnością.
 
 ## Instalacja
 
