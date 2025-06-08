@@ -55,12 +55,10 @@ Możesz skorzystać z poniższych kont do testowania aplikacji:
 
 Konto 1:
 
-Email: user1@example.com
-
-Hasło: user11234
+-   **Email:** `user1@example.com`
+-   **Hasło:** `user11234`
 
 Konto 2:
 
-Email: user2@example.com
-
-Hasło: user21234
+-   **Email:** `user2@example.com`
+-   **Hasło:** `user21234`
