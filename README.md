@@ -14,6 +14,9 @@ System wspiera współpracę w grupie i pozwala na efektywne zarządzanie zadani
 
 ## Wymagania wstępne
 
+> ⚠️ **Uwaga:** Aplikacja wymaga stałego połączenia z internetem do poprawnego
+> działania, ponieważ korzysta z zewnętrznych usług.
+
 Aplikacja została przygotowana i przetestowana przy użyciu następujących wersji:
 
 -   [Node.js](https://nodejs.org/) (zalecana wersja LTS, wersja v23.9.0)
