@@ -1,16 +1,25 @@
-# TaskFlow
-
-## 📌 Project Overview
+# 🧠 TaskFlow – Simple Task Management App
 
 **TaskFlow** is a web application designed for streamlined **team and task management**. It helps teams collaborate more efficiently by simplifying the process of assigning and tracking tasks.
 
-### 🔧 Key Features:
+---
 
-- User registration and login
-- Create and manage teams
-- Add members to teams
-- Create and assign tasks within a team
-- Track task progress and statuses
+## 🔧 Key Features:
+
+- 🔐 User registration and login
+- 👥 Create and manage teams
+- ➕ Add members to teams
+- 📝 Create and assign tasks within a team
+- 📊 Track task progress and statuses
+
+---
+
+### 🛠️ Tech Stack
+
+- ⚛️ **React** – Frontend JavaScript library for building dynamic user interfaces  
+- ⚡ **Vite** – Fast build tool and development server  
+- ☁️ **Supabase** – Backend-as-a-Service: authentication, PostgreSQL database
+- 🔄 **React Router** – Client-side routing for single-page applications  
 
 ---
 
