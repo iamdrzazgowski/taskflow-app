@@ -60,6 +60,8 @@ The application has been tested with the following environment:
     http://localhost:5173
     ```
 
+---
+
 ## 🔐 Test Accounts
 
 You can log in using the following test accounts:
@@ -73,6 +75,8 @@ Account 2:
 
 -   **Email:** `user2@example.com`
 -   **Hasło:** `user21234`
+
+---
 
 ## 🖼️ Screenshots
 
