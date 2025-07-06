@@ -80,7 +80,7 @@ Account 2:
 
 ## 🖼️ Screenshots
 
-![Image](https://github.com/user-attachments/assets/83b8671e-e2b2-44e9-80f1-80e2cdc199f9)
 ![Image](https://github.com/user-attachments/assets/3cb4a626-7aae-4b8f-a742-7c8177e9a8b2)
-![Image](https://github.com/user-attachments/assets/fba9164a-3f76-4ada-a6b1-499c943aea3a)
+![Image](https://github.com/user-attachments/assets/83b8671e-e2b2-44e9-80f1-80e2cdc199f9)
 ![Image](https://github.com/user-attachments/assets/6df47f43-0fc2-400d-9d48-aedb39c48f45)
+![Image](https://github.com/user-attachments/assets/fba9164a-3f76-4ada-a6b1-499c943aea3a)
