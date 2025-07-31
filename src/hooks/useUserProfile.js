@@ -20,15 +20,11 @@ export function useUserProfile() {
                     .from('users')
                     .select('*')
                     .eq('id', user.id)
-                    .maybeSingle();
+                    .single();
 
                 if (error) {
                     console.error('Błąd przy pobieraniu profilu:', error);
                     setIsPofileLoading(false);
-                    return;
-                }
-
-                if (!data) {
                     navigate('/login');
                     return;
                 }
